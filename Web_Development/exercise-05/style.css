@@ -1,0 +1,102 @@
+#container {
+    display: grid;
+    grid-template-columns: 80% 20%;
+}
+
+#pokemon-display {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+}
+.cards > div{
+    border: 2px solid grey;
+    border-radius: 5px;
+    margin: 15px;
+    padding: 20px;
+    background:linear-gradient(grey,white);
+    box-shadow: 10px 5px 15px grey;
+    
+}
+button{
+    display: grid;
+    justify-content: center;
+    font-size: 10px;
+    padding: 10px;
+    background-color: black;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+} 
+.cards > div:hover{
+    transform: scale(1.1); 
+}
+.iframe-right{
+    position: sticky;
+    top: 0;
+    margin-top: 10px;
+    width: 350px;
+    height: 500px;
+    background:linear-gradient(grey,white);
+    box-shadow: 10px 5px 15px grey;
+    padding-top: 30px;
+    padding-left: 30px;
+}
+.heading{
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+    width: 100%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    box-shadow: 10px 5px 15px grey;
+}
+
+#show_More__pokemon{
+    transform: translateX(800px);
+    box-shadow: 10px 5px 15px grey;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    cursor: pointer;
+    margin-top: 40px;
+}
+/* .right_detail{
+    display: flex;
+} */
+#search-pokemon{
+    width: 200px;
+    height: 27px;
+    padding: 5px;
+    position: sticky;
+    top: 558px;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+select{
+    position: sticky;
+    top: 558px;
+    margin-top: 20px;
+    width: 150px;
+    font-size: 20px;
+    height: 40px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+@media only screen and (max-width: 1000px) {
+    #pokemon-display {
+        display: grid;
+        grid-template-columns: 30% 30% 30%;
+    }
+    #show_More__pokemon{
+        transform: translateX(400px);
+    }
+  }
+
+  @media only screen and (max-width: 668px) {
+    #pokemon-display {
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+    #show_More__pokemon{
+        transform: translateX(150px);
+    }
+  }

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 5 Pokemon</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="./ex5.js"></script>
+  </head>
+
+  <body>
+    <div>
+      <div>
+        <h1 class="heading">Pokemon</h1>
+        <div id="container">
+          <div id="pokemon-display" class="cards"></div>
+          <div id="right_details">
+            <iframe class="iframe-right" id="fect_more_details"></iframe>
+            <input type="text" id="search-pokemon" placeholder="Search..." />
+            <!-- <button id="search-btn">Search</button> -->
+            <select id="sorting">
+              <option id="order" value="1">Order</option>
+              <option id="weight" value="2">Weight</option>
+              <option id="base_experience" value="3">Base Experience</option>
+            </select>
+          </div>
+        </div>
+
+        <button id="show_More__pokemon">Fetch Pokemon</button>
+      </div>
+    </div>
+  </body>
+</html>
