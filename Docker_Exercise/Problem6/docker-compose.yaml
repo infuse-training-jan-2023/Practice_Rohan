@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  backend:
+    build: 
+      context: ./node-backend
+    command: node ex5.js
+    ports:
+      - "5000:5000"
+    volumes:
+      - C:\Users\Rohan\Documents\Docker_Exercise\Problem6\node-backend:/node-backend
+      - /backend/node_modules
+  frontend:
+    build: 
+      context: ./react-frontend
+    command: npm run start
+    ports:
+      - "3000:3000"
+    volumes:
+      - C:\Users\Rohan\Documents\Docker_Exercise\Problem6\react-frontend:/react-frontend
+      - /react-app/node_modules
+    environment:
+      - WATCHPACK_POLLING=true
+    
+  
