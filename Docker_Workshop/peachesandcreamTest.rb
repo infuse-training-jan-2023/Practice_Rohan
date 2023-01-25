@@ -1,10 +1,14 @@
-require 'selenium-webdriver'
-
+require 'selenium-webdriver' 
 class Peachesand_and_Cream_test
     def initialize
-        Selenium::WebDriver::Chrome.driver_path = "C:\\selenium\\Driver\\chromedriver.exe" 
-        # Selenium::WebDriver::Chrome.driver_path = "/usr/local/bin/chromedriver" 
-        @driver = Selenium::WebDriver.for :chrome
+        Selenium::WebDriver::Chrome.driver_path = '/opt/chromedriver-109.0.5414.74/chromedriver'
+        options = Selenium::WebDriver::Chrome::Options.new
+        options.add_argument('--headless')
+        options.add_argument('--no-sandbox')
+        options.add_argument('--disable-dev-shm-usage')
+        options.add_argument('--window-size=1920,1080')
+
+        @driver = Selenium::WebDriver.for :chrome ,options: options
     end
 
     def navigate_to_Browser_getURL(webPage_URL)
