@@ -2,26 +2,24 @@ require 'selenium-webdriver'
 Selenium::WebDriver::Chrome.driver_path = "C:\\selenium\\Driver\\chromedriver.exe"
 
 class Problem10
-    def get_Table_First_Column
+    def get_table_first_column
         driver = Selenium::WebDriver.for :chrome
-
-        driver.get("https://computer-database.gatling.io/computers")
-
+        url = "https://computer-database.gatling.io/computers"
+        driver.get(url)
         thead = driver.find_element(:tag_name, 'thead')
         tdTag = thead.find_element(:tag_name, 'tr')
-        thTag = tdTag.find_elements(:tag_name, 'th')
-        puts thTag[0].text
-
-        tbody = driver.find_element(:tag_name, 'tbody')
-        tdTag = tbody.find_elements(:tag_name, 'tr')
-
-        tdTag.each do |e|
-            tdData = e.find_elements(:tag_name, 'td')
-            puts tdData[0].text
+        first_column_header = tdTag.find_elements(:tag_name, 'th')
+        puts first_column_header[0].text
+        get_tbody = driver.find_element(:tag_name, 'tbody')
+        get_all_tr_tag = get_tbody.find_elements(:tag_name, 'tr')
+        get_all_tr_tag.each do |e|
+            first_column_text = e.find_elements(:tag_name, 'td')
+            puts first_column_text[0].text
         end
         sleep(2)
         driver.quit()
     end
 end   
 
-Problem10.new.get_Table_First_Column()
+prob =Problem10.new()
+prob.get_table_first_column()
