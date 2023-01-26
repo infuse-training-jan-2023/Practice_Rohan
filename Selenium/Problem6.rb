@@ -4,19 +4,17 @@ Selenium::WebDriver::Chrome.driver_path = "C:\\selenium\\Driver\\chromedriver.ex
 class Problem6
     def list_dropdowns()
         driver = Selenium::WebDriver.for :chrome
-
-        driver.get("https://letcode.in/forms")
-
-        sel = driver.find_elements(:tag_name, 'select')
-        sel.each do |e|
-            if (!e.text.include?("+"))
-                puts e.text
-            end
+        url = "https://letcode.in/forms"
+        driver.get(url)
+        country_name = driver.find_elements(:tag_name, 'select')[1]
+        choose = country_name.find_elements(:tag_name, 'option')
+        choose.each do|e|
+            puts e.text
         end
-
         sleep(2)
         driver.quit()
     end
 end
 
-Problem6.new.list_dropdowns()
+prob=Problem6.new()
+prob.list_dropdowns()
