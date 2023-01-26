@@ -4,17 +4,16 @@ Selenium::WebDriver::Chrome.driver_path = "C:\\selenium\\Driver\\chromedriver.ex
 class Problem7
     def select_option()
         driver = Selenium::WebDriver.for :chrome
-        driver.get("https://testpages.herokuapp.com/styled/basic-html-form-test.html")
-        sel = driver.find_elements(:tag_name => "option")
-        sel.each do |opt|
-            if opt.text == "Drop Down Item 1"
-                opt.click
-                puts opt.text
-            end
-        end
+        url = "https://testpages.herokuapp.com/styled/basic-html-form-test.html"
+        driver.get(url)
+        dropdown = driver.find_element(:name=> "dropdown")
+        choose = Selenium::WebDriver::Support::Select.new(dropdown)
+        choose.select_by(:index,3)
+        return dropdown_value = choose.selected_options[0].text
         sleep(2)
         driver.quit()
     end
 end
 
-Problem7.new.select_option()
+prob = Problem7.new()
+puts prob.select_option()
