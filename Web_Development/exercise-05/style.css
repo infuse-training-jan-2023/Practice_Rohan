@@ -31,14 +31,15 @@ button{
 }
 .iframe-right{
     position: sticky;
-    top: 0;
+    top: 100px;
     margin-top: 10px;
-    width: 350px;
-    height: 500px;
+    width: 92%;
+    height: 600px;
     background:linear-gradient(grey,white);
     box-shadow: 10px 5px 15px grey;
     padding-top: 30px;
     padding-left: 30px;
+    border-radius: 10px;
 }
 .heading{
     text-align: center;
@@ -58,21 +59,19 @@ button{
     cursor: pointer;
     margin-top: 40px;
 }
-/* .right_detail{
-    display: flex;
-} */
 #search-pokemon{
-    width: 200px;
-    height: 27px;
-    padding: 5px;
+    width: 222px;
+    height: 37px;
+    padding: 10px;
+    top:40px;
     position: sticky;
-    top: 558px;
     border-radius: 5px;
     margin-top: 15px;
+    padding-top: 15px;
 }
 select{
+    top:40px;
     position: sticky;
-    top: 558px;
     margin-top: 20px;
     width: 150px;
     font-size: 20px;
@@ -81,13 +80,20 @@ select{
     border-radius: 5px;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1100px) {
     #pokemon-display {
         display: grid;
-        grid-template-columns: 30% 30% 30%;
+        grid-template-columns: 32% 32% 32%;
     }
     #show_More__pokemon{
         transform: translateX(400px);
+    }
+    .iframe-right{
+        width: 200px;
+        top: 120px;
+    }
+    select{
+        top:80px;
     }
   }
 

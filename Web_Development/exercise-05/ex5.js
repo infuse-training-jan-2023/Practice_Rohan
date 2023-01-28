@@ -1,7 +1,7 @@
 const pokemon = document.getElementById("pokemon-display");
 const showMore = document.getElementById("show_More__pokemon");
 const showMoreDetails = document.getElementById("fect_more_details");
-let pokemon_url = "https://pokeapi.co/api/v2/pokemon";
+const pokemonUrl = "https://pokeapi.co/api/v2/pokemon";
 
 var nextURl = null;
 var URL_info;
@@ -26,7 +26,6 @@ showMore.addEventListener("click", async () => {
 
 const fetchPokemonUrlDetails = async (data) => {
   let { url } = data;
-  
   await fetch(url)
     .then((response) => response.json())
     .then((urlData) => {
@@ -57,22 +56,54 @@ const renderPokemonData = (urlData) => {
   showPokemonDetails.innerText = "Show More Details";
 
   showPokemonDetails.addEventListener("click", () => {
-    showMoreDetails.srcdoc = `<!DOCTYPE html><img width="150" src="${urlData.sprites.front_default}"/><h2>Name: ${name}</h2> <h4>ID: ${id}</h4> <h4>Weight: ${weight}</h4> <h4>Base experience: ${base_experience}</h4> <h4> Type: ${urlData.types[0].type.name}</h4> <p> Moves: ${urlData.moves[0].move.name}, ${urlData.moves[1].move.name}, ${urlData.moves[2].move.name}, ${urlData.moves[3].move.name}, ${urlData.moves[4].move.name}</p>`;
+    showMoreDetails.srcdoc = `<!DOCTYPE html><html>
+    <head>
+    <style>
+    #show_more__moves{
+      font-size: 20px;
+      color: black;
+      text-align: center;
+      }
+    #more_moves{
+      font-size: 10px;
+      padding: 10px;
+      background-color: black;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+    }
+    </style>
+
+    </head>
+    <body>
+    <img width="150" src="${
+      urlData.sprites.front_default
+    }"/><h2>Name: ${name}</h2> <h4>ID: ${id}</h4> <h4>Weight: ${weight}</h4> <h4>Base experience: ${base_experience}</h4> <h4> Type: ${
+      urlData.types[0].type.name
+    }</h4> <h4> Moves: ${urlData.moves[0].move.name}, ${
+      urlData.moves[1].move.name
+    }, ${urlData.moves[2].move.name}, ${urlData.moves[3].move.name}, ${
+      urlData.moves[4].move.name
+    }</h4>
+    <button onclick="pokemonMoves()" id="more_moves">Show More Moves</button>
+    <p id=show_more__moves></p>
+        <script>
+        function pokemonMoves(){
+          show_more__moves.innerHTML= "${urlData["moves"].map(
+            (element) => element.move.name
+          )}";
+        }
+        </script>
+    </body>
+    </html>`;
   });
+
   pokemonImg.addEventListener("mouseout", () => {
     pokemonImg.src = urlData.sprites.front_default;
   });
   pokemonImg.addEventListener("mouseover", () => {
     pokemonImg.src = urlData.sprites.back_default;
   });
-
-  const sortedWeights = [...document.querySelectorAll(".cards")].sort(
-    (x, y) =>
-      x.childNodes[2].innerText.split(":")[1] -
-      y.childNodes[2].innerText.split(":")[1]
-  );
-  console.log(sortedWeights);
-
   createPokemonContainer.append(
     pokemonImg,
     pokemonName,
@@ -83,17 +114,21 @@ const renderPokemonData = (urlData) => {
   );
   pokemon.appendChild(createPokemonContainer);
 };
-
 const searchPokemonName = () => {
   let searchPokemon = document.getElementById("search-pokemon").value;
   let searchArray = URL_info.filter((element) =>
     element.name.includes(searchPokemon)
   );
-  pokemon.innerHTML = "";
-  searchArray.forEach((element) => {
-    fetchPokemonUrlDetails(element);
-  });
+  if (pokemon.innerHTML == "") {
+    pokemon.innerHTML = `<h1>No results found</h1>`;
+  } else {
+    pokemon.innerHTML = "";
+    searchArray.forEach((element) => {
+      fetchPokemonUrlDetails(element);
+    });
+  }
 };
+
 let x = document.getElementById("search-pokemon");
 x.oninput = searchPokemonName;
 
@@ -132,15 +167,15 @@ const sortedById = () => {
 };
 
 const SortFunction = () => {
-  let SortValue = document.getElementById("sorting").value;  
+  let SortValue = document.getElementById("sorting").value;
   switch (SortValue) {
-    case ("1"):
+    case "1":
       sortedById();
       break;
-    case ("2"):
+    case "2":
       sortedWeights();
       break;
-    case ("3"):
+    case "3":
       sortedBaseExperience();
       break;
     default:
@@ -151,4 +186,4 @@ const SortFunction = () => {
 let sortdata = document.getElementById("sorting");
 sortdata.onchange = SortFunction;
 
-fetchPokemonDetails(pokemon_url);
+fetchPokemonDetails(pokemonUrl);
