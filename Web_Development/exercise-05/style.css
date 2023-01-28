@@ -52,7 +52,8 @@ button{
 }
 
 #show_More__pokemon{
-    transform: translateX(800px);
+    margin: 0 auto;
+    display: block;
     box-shadow: 10px 5px 15px grey;
     font-size: 30px;
     font-weight: bold;
@@ -90,9 +91,6 @@ select{
         display: grid;
         grid-template-columns: 32% 32% 32%;
     }
-    #show_More__pokemon{
-        transform: translateX(400px);
-    }
     .iframe-right{
         width: 90%;
         top: 120px;
@@ -115,6 +113,7 @@ select{
         grid-template-columns: 50% 50%;
     }
     #show_More__pokemon{
-        transform: translateX(150px);
+        font-size: 20px;
+        width: 200px;
     }
   }
