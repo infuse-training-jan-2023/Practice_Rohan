@@ -114,6 +114,7 @@ const renderPokemonData = (urlData) => {
   );
   pokemon.appendChild(createPokemonContainer);
 };
+
 const searchPokemonName = () => {
   let searchPokemon = document.getElementById("search-pokemon").value;
   let searchArray = URL_info.filter((element) =>
@@ -129,40 +130,15 @@ const searchPokemonName = () => {
   }
 };
 
-let x = document.getElementById("search-pokemon");
-x.oninput = searchPokemonName;
-
-const sortedWeights = () => {
+const sortPokemon = (value) => {
   let result = Array.from(
     document.getElementById("pokemon-display").children
   ).sort((x, y) => {
-    x = String(x.children[3].innerText).split(":")[1];
-    y = String(y.children[3].innerText).split(":")[1];
+    x = String(x.children[value].innerText).split(":")[1];
+    y = String(y.children[value].innerText).split(":")[1];
     return x - y;
   });
 
-  document.getElementById("pokemon-display").replaceChildren(...result);
-};
-
-const sortedBaseExperience = () => {
-  let result = Array.from(
-    document.getElementById("pokemon-display").children
-  ).sort((x, y) => {
-    x = String(x.children[4].innerText).split(":")[1];
-    y = String(y.children[4].innerText).split(":")[1];
-    return x - y;
-  });
-  document.getElementById("pokemon-display").replaceChildren(...result);
-};
-
-const sortedById = () => {
-  let result = Array.from(
-    document.getElementById("pokemon-display").children
-  ).sort((x, y) => {
-    x = String(x.children[2].innerText).split(":")[1];
-    y = String(y.children[2].innerText).split(":")[1];
-    return x - y;
-  });
   document.getElementById("pokemon-display").replaceChildren(...result);
 };
 
@@ -170,20 +146,17 @@ const SortFunction = () => {
   let SortValue = document.getElementById("sorting").value;
   switch (SortValue) {
     case "1":
-      sortedById();
+      sortPokemon(2);
       break;
     case "2":
-      sortedWeights();
+      sortPokemon(3);
       break;
     case "3":
-      sortedBaseExperience();
+      sortPokemon(4);
       break;
     default:
       console.log("Hello");
   }
 };
-
-let sortdata = document.getElementById("sorting");
-sortdata.onchange = SortFunction;
 
 fetchPokemonDetails(pokemonUrl);

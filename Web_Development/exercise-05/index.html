@@ -16,8 +16,8 @@
         <div id="container">
           <div id="pokemon-display" class="cards"></div>
           <div id="right_details">
-            <input type="search" id="search-pokemon" placeholder="Search..." />
-            <select id="sorting">
+            <input type="search" id="search-pokemon" placeholder="Search..." oninput="searchPokemonName()" />
+            <select id="sorting" onchange="SortFunction()">
               <option id="order" value="1">Order</option>
               <option id="weight" value="2">Weight</option>
               <option id="base_experience" value="3">Base Experience</option>
