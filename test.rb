@@ -7,6 +7,6 @@ class TestExample < Test::Unit::TestCase
   end
   
   def test_example 
-     assert_equal(3, 3 + 1)
+     assert_equal(4, 3 + 1)
   end
 end
