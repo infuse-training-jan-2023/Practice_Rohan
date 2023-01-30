@@ -9,7 +9,7 @@ pipeline {
         }
         stage('test') {
             steps {
-                bat ''
+                bat '''
                     git switch jenkins/ruby
                     git pull origin jenkins/ruby
                     git switch jenkins/ruby-1
