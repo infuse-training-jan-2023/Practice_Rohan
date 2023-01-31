@@ -89,9 +89,9 @@ const renderPokemonData = (urlData) => {
     <p id=show_more__moves></p>
         <script>
         function pokemonMoves(){
-          show_more__moves.innerHTML= "${urlData["moves"].map(
-            (element) => element.move.name
-          )}";
+          show_more__moves.innerHTML= "${urlData["moves"]
+            .map((element, index) => (index > 4 ? (element.move.name) + "," : ""))
+            .join(" ")}";
         }
         </script>
     </body>
