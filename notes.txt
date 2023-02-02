@@ -1,0 +1,46 @@
+Difference Between Inheritance and Composition
+
+Inheritance is used to define a relationship between two classes where one class inherits the 
+methods and characteristics of another class, while composition is used to define a relationship 
+between two classes where one class contains the other class as an attribute.
+
+Inheritance allows for code reuse and is used to define a "is-a" relationship between classes,
+while composition allows for more flexibility and is used to define a "has-a" relationship between 
+classes. 
+
+In Python, the syntax for inheritance is to use the class keyword followed by the parent 
+class within parentheses, while the syntax for composition is to define an instance of another 
+class as an attribute within the current class.
+
+................................................................    
+
+Difference between list.append() ilst.extend()
+
+The list.append() method adds a single element to the end of the list [2], 
+while the list.extend() method adds multiple elements to the end of the list.
+
+................................................................
+Packages 
+
+Packages contain modules, subpackages or other resources such as static data 
+or image files. 
+Packages can be imported and used in programs by using the ‘import’ 
+statement
+
+................................................................
+
+How to Write Package
+ 
+First create a directory and add an empty init.py file in it to tell Python that the 
+current directory is a package. Then add modules to the package by adding files with the .py file 
+extension. Inside the package, you can create multiple sub-packages by creating additional 
+directories, and add the init.py file in each of them. Finally, you can import the package 
+into other modules or scripts using the import statement. 
+
+................................................................
+
+Triple quotes in Python
+
+Triple quotes (''' python """) are used to create strings that span multiple lines. 
+This allows you to write longer strings without having to escape newline characters.
+
