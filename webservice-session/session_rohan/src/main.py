@@ -81,5 +81,14 @@ def get_email():
         return Response(json.dumps({'status':'Valid Email'}), mimetype='application/json', status=201)
     return Response(json.dumps({'status':' Not A Valid Email'}), mimetype='application/json', status=400)
 
+#PROBLEM -2
+@app.route('/password',methods=['POST'])
+def get_password():
+    request_passord = request.get_json()
+    password = request_passord.get('password')
+    if re.search('^(?=.*?[A-Z])(?=.*?[@_!#$%^&*()<>?/\|}{~:]).{8,}$', password):
+        return Response(json.dumps({'status':'Valid Password'}), mimetype='application/json', status=201)
+    return Response(json.dumps({'status':' Not A Valid Password'}), mimetype='application/json', status=400)
+
 if __name__ == '__main__':
     app.run(debug=True,port=5000,host='0.0.0.0')
