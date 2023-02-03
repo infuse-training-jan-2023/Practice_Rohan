@@ -1,6 +1,7 @@
 from flask import Flask,Response,request
 from item_actions import ItemAction
 import json
+import re
 
 app = Flask(__name__)
 item_action = ItemAction() 
@@ -70,6 +71,15 @@ def add_new_user():
     if added_user == {}:
        return Response("{'error': 'Error addding the user'}", mimetype='application/json', status=500)
     return Response(json.dumps(added_user), mimetype='application/json', status=201)
+
+#PROBLEM -1
+@app.route('/email',methods=['POST'])
+def get_email():
+    request_email = request.get_json()
+    email = request_email.get('email')
+    if re.search('^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$', email):
+        return Response(json.dumps({'status':'Valid Email'}), mimetype='application/json', status=201)
+    return Response(json.dumps({'status':' Not A Valid Email'}), mimetype='application/json', status=400)
 
 if __name__ == '__main__':
     app.run(debug=True,port=5000,host='0.0.0.0')
