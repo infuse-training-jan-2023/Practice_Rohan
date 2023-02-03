@@ -2,6 +2,7 @@ from flask import Flask,Response,request
 from item_actions import ItemAction
 import json
 import re
+import requests
 
 app = Flask(__name__)
 item_action = ItemAction() 
@@ -90,5 +91,13 @@ def get_password():
         return Response(json.dumps({'status':'Valid Password'}), mimetype='application/json', status=201)
     return Response(json.dumps({'status':' Not A Valid Password'}), mimetype='application/json', status=400)
 
+#PROBLEM -3
+@app.route('/input/<int:id>',methods=['GET'])
+def validate_input(id):
+    response = requests.get(f'https://jsonplaceholder.typicode.com/todos/{id}')
+    if ((id < 0) or (id > 200)):
+        return Response(json.dumps({'status':'Input must be integer between 1 to 200'}), mimetype='application/json', status=400)
+    return Response(response, mimetype='application/json', status=200)
+    
 if __name__ == '__main__':
     app.run(debug=True,port=5000,host='0.0.0.0')
