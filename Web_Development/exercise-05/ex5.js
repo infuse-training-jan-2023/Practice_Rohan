@@ -11,7 +11,7 @@ const fetchPokemonDetails = async (pokemonurl) => {
   await fetch(pokemonurl)
     .then((response) => response.json())
     .then((data = {}) => {
-      let { results, next } = data;
+      const { results, next } = data;
       URL_info = results;
       nextURl = next;
       results.forEach((pokemonData) => {
@@ -25,7 +25,7 @@ showMore.addEventListener("click", async () => {
 });
 
 const fetchPokemonUrlDetails = async (data) => {
-  let { url } = data;
+  const { url } = data;
   await fetch(url)
     .then((response) => response.json())
     .then((urlData) => {
@@ -34,7 +34,7 @@ const fetchPokemonUrlDetails = async (data) => {
 };
 
 const renderPokemonData = (urlData) => {
-  let { name, id, weight, base_experience } = urlData;
+  const { name, id, weight, base_experience } = urlData;
   let createPokemonContainer = document.createElement("div");
   let pokemonName = document.createElement("h2");
   pokemonName.innerText = `Name: ${name}`;
@@ -71,6 +71,8 @@ const renderPokemonData = (urlData) => {
       border-radius: 5px;
       color: white;
       cursor: pointer;
+      display: block;
+      margin:auto;
     }
     </style>
 
@@ -85,25 +87,38 @@ const renderPokemonData = (urlData) => {
     }, ${urlData.moves[2].move.name}, ${urlData.moves[3].move.name}, ${
       urlData.moves[4].move.name
     }</h4>
-    <button onclick="pokemonMoves()" id="more_moves">Show More Moves</button>
-    <p id=show_more__moves></p>
+      <p id="show_more__moves"></p>
+      <button onclick="pokemonMoves()" id="more_moves">Show More Moves</button>
         <script>
-        function pokemonMoves(){
+        const pokemonMoves = () => {
           show_more__moves.innerHTML= "${urlData["moves"]
-            .map((element, index) => (index > 4 ? (element.move.name) + "," : ""))
-            .join(" ")}";
+            .map((element) =>  element.move.name)
+            .slice(5,)
+            .join(", ")}";
         }
+        let showMore = false;
+        let hideMore = false;
+        let showLess = document.getElementById("more_moves")
+        showLess.addEventListener("click", ()=>{
+          showMore = !showMore;
+          document.getElementById("show_more__moves").style.display = showMore ? "block" : "none";
+          if(hideMore){
+            showLess.textContent = "Show More Moves";
+            hideMore = false;
+          }else{
+            showLess.textContent = "show less";
+            hideMore = true;
+          }
+        });
+        
         </script>
     </body>
     </html>`;
   });
 
-  pokemonImg.addEventListener("mouseout", () => {
-    pokemonImg.src = urlData.sprites.front_default;
-  });
-  pokemonImg.addEventListener("mouseover", () => {
-    pokemonImg.src = urlData.sprites.back_default;
-  });
+  pokemonImg.addEventListener("mouseout", () => pokemonImg.src = urlData.sprites.front_default);
+  pokemonImg.addEventListener("mouseover", () => pokemonImg.src = urlData.sprites.back_default);
+
   createPokemonContainer.append(
     pokemonImg,
     pokemonName,
@@ -131,15 +146,12 @@ const searchPokemonName = () => {
 };
 
 const sortPokemon = (value) => {
-  let result = Array.from(
-    document.getElementById("pokemon-display").children
-  ).sort((x, y) => {
-    x = String(x.children[value].innerText).split(":")[1];
-    y = String(y.children[value].innerText).split(":")[1];
-    return x - y;
-  });
-
-  document.getElementById("pokemon-display").replaceChildren(...result);
+  let result = Array.from(pokemon.children).sort(
+    (x, y) =>
+      String(x.children[value].innerText).split(":")[1] -
+      String(y.children[value].innerText).split(":")[1]
+  );
+  pokemon.replaceChildren(...result);
 };
 
 const SortFunction = () => {
