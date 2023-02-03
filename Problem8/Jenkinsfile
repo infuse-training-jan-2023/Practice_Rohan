@@ -9,8 +9,8 @@ pipeline {
                     def get = new URL("https://jsonplaceholder.typicode.com/todos").openConnection();
                     get.requestMethod = "GET"
                     def data = get.getInputStream().getText()
-                    def jsonObject = new JsonSlurperClassic().parseText(data)
-                    for(item in jsonObject){
+                    def todosJsonObj = new JsonSlurperClassic().parseText(data)
+                    for(item in todosJsonObj){
                     if(item.completed == false){
                         println(item)
                         }
