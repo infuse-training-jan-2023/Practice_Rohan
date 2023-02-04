@@ -1,57 +1,54 @@
 import sqlite3
 import csv
-class ItemRepository:
-    DBPATH = './todo.db'
-    NOT_STARTED = "Not started"
 
-    @staticmethod
-    def connect_db():
-        return sqlite3.connect(ItemRepository.DBPATH)
+class ItemRepository:
     
-    @staticmethod
-    def get_all_items():
+    def __init__(self) -> None:
+        self.DBPATH = './todo.db'
+        self.connection = None
+
+    def connect_db(self):
+        if self.connection is None:
+            self.connection =  sqlite3.connect(self.DBPATH,check_same_thread=False)
+    
+    def get_all_items(self):
         try:
-            conn = ItemRepository.connect_db()
-            c = conn.cursor()
+            self.connect_db()
+            c = self.connection.cursor()
             rows = c.execute('select * from items')
             return rows
         except sqlite3.Error as e:
             raise Exception ('Error:',e)
     
-    @staticmethod
-    def add_item(item, reminder):
+    def add_item(self,item, reminder):
         try:
-            conn = ItemRepository.connect_db()
-            c = conn.cursor()
-            insert_cursor = c.execute('insert into items(item, status, reminder) values(?,?,?)', (item, ItemRepository.NOT_STARTED, reminder))
-            conn.commit()
+            self.connect_db()
+            c = self.connection.cursor()
+            insert_cursor = c.execute('insert into items(item, status, reminder) values(?,?,?)', (item, 'Not Satrted', reminder))
+            self.connection.commit()
             return {
                 'id': insert_cursor.lastrowid,
                 'item': item,
-                'status': ItemRepository.NOT_STARTED,
+                'status': 'Not Started',
                 'reminder': reminder
             }
         except Exception as e:
             raise Exception('Error: ', e)
-        finally:
-            conn.close()
-    
-    @staticmethod
-    def get_item(item_id):
+ 
+    def get_item(self,item_id):
         try:
-            conn = ItemRepository.connect_db()
-            c = conn.cursor()
+            self.connect_db()
+            c = self.connection.cursor()
             rows = c.execute('select * from items where id=?', (item_id,))
             return rows
         except sqlite3.Error as e:
             raise Exception ('Error:',e)
     
-    @staticmethod
-    def delete_item(item_id):
+    def delete_item(self,item_id):
         try:
-            conn = ItemRepository.connect_db()
-            c = conn.cursor()
-            row = ItemRepository.get_item(item_id)
+            self.connect_db()
+            c = self.connection.cursor()
+            row = self.get_item(item_id)
             res = []
             for x in row:
                 res.append({
@@ -60,34 +57,31 @@ class ItemRepository:
             if res == []:
                 raise TypeError('Invalid ID')
             c.execute('DELETE from items WHERE id=?', (item_id,))     
-            conn.commit()
+            self.connection.commit()
             return {'status':'Item deleted successfully'}
         except Exception as e:
-            conn.rollback()
+            self.connection.rollback()
             raise Exception ('Error: Error deleting row')
     
-    @staticmethod
-    def update_item(item_id,update_data):
+    def update_item(self,item_id,update_data):
         try:
-            conn = ItemRepository.connect_db()
-            c = conn.cursor()
+            self.connect_db()
+            c = self.connection.cursor()
             for key, value in update_data.items():
                 c.execute(f'UPDATE items SET {key} = ?  WHERE id=?', (value,item_id))
-            conn.commit()
+            self.connection.commit()
             return {
                     "status": "Updated successfully"
             }
-            conn.close()
         except Exception as e:
             raise Exception('Error: ', e)
-    
-    @staticmethod
-    def add_new_user(name,age,gender,address):
+
+    def add_new_user(self,name,age,gender,address):
         try:
-            conn = ItemRepository.connect_db()
-            c = conn.cursor()
+            self.connect_db()
+            c = self.connection.cursor()
             insert_cursor = c.execute('insert into user(name,age,gender,address) values(?,?,?,?)', (name,age,gender,address))
-            conn.commit()
+            self.connection.commit()
             return {
                 'user_id': insert_cursor.lastrowid,
                 'name': name,
@@ -97,14 +91,11 @@ class ItemRepository:
             }
         except Exception as e:
             raise Exception('Error: ', e)
-        finally:
-            conn.close()
         
-    @staticmethod
-    def add_item_to_csv():
+    def add_item_to_csv(self):
         try:
-            conn = ItemRepository.connect_db()
-            c = conn.cursor()
+            self.connect_db()
+            c = self.connection.cursor()
             columns = ["id","item","status","reminder"]
             rows = c.execute('select * from items')
             with open('../items.csv', 'w') as csvfile:
@@ -114,7 +105,5 @@ class ItemRepository:
             return {"status":"Saved to CSV file"}
         except Exception as e:
             raise Exception('Error: ', e)
-        finally:
-            conn.close()
        
         

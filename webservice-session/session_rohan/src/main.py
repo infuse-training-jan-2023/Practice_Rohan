@@ -53,7 +53,7 @@ def update_item(item_id):
        return Response("{'error': 'Error addding the item'}", mimetype='application/json', status=500)
     return Response(json.dumps(update_item), mimetype='application/json', status=200)
 
-@app.route('/itemss',methods=['POST'])
+@app.route('/items',methods=['POST'])
 def add_item_to_csv():
     added_item = item_action.add_item_to_csv()
     # if added_item == {}:
