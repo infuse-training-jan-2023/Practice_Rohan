@@ -1,2 +1,4 @@
 myenv
-src/__pycache__
+*__pycache__
+*.db
+*.pytest_cache
