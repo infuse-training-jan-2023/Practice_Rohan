@@ -6,7 +6,12 @@ class Problem4
         driver = Selenium::WebDriver.for :chrome
         url ="https://demo.automationtesting.in/Register.html"
         driver.get(url)
-        driver.find_elements(:name, 'radiooptions')[0].click
+        radion_button = driver.find_elements(:name, 'radiooptions')
+        radion_button.each do |element|
+            if element.attribute('value') == "Male"
+                element.click
+            end
+        end
         driver.find_element(:id, 'checkbox1').click
         driver.find_element(:id, 'checkbox2').click
         sleep(2)
