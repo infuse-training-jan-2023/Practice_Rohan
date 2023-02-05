@@ -24,4 +24,4 @@ FROM base as test
 CMD ["ruby", "test.rb"]
 
 FROM base as run
-CMD ["ruby", "run_Peachesand_and_Cream_test.rb"]
+CMD ["ruby", "RunFrameWork.rb"]
