@@ -2,9 +2,8 @@ require 'selenium-webdriver'
 Selenium::WebDriver::Chrome.driver_path = "C:\\selenium\\Driver\\chromedriver.exe"
 
 class Problem4
-    def click_button()
+    def click_button(url)
         driver = Selenium::WebDriver.for :chrome
-        url ="https://demo.automationtesting.in/Register.html"
         driver.get(url)
         radion_button = driver.find_elements(:name, 'radiooptions')
         radion_button.each do |element|
@@ -20,4 +19,5 @@ class Problem4
 end
 
 prob = Problem4.new()
-prob.click_button()
+url ="https://demo.automationtesting.in/Register.html"
+prob.click_button(url)
