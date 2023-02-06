@@ -2,8 +2,8 @@ require_relative "DriverFile"
 class AutomationFamework
     attr_accessor:driver
 
-    def initialize
-        @driver = SeleniumWebDriver.new.create_driver()
+    def initialize(driver_new)
+        @driver = driver_new
     end
 
     def navigate_to_browser(url)

@@ -1,10 +1,12 @@
 require_relative "AutomationFrameWork"
-require 'selenium-webdriver' 
+require_relative 'DriverFile'
+
 class AutomationTest
     attr_accessor:testObject, :url, :wait_seconds
 
     def initialize
-        @testObject = AutomationFamework.new()
+        driver = SeleniumWebDriver.new.create_driver()
+        @testObject = AutomationFamework.new(driver)
         @url = "https://peachesandcream.in/"
         @wait_seconds = 2
     end
