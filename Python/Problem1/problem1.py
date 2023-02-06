@@ -1,6 +1,5 @@
 import re
 class Problem1:
-    
     def serial_number(self, string_data) -> str:
         match = re.search(
             r'[0-9]{3}-[0-9]{2}.[0-9]{2}-[0-9]{2}.[0-9]{2}', string_data)

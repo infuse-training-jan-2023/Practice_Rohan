@@ -1,8 +1,7 @@
 from input import data
 
 class Problem4:
-    
-    def subarray(self,nums, k):
+    def subarray(self,nums,k):
         dict = {}
         sum = 0
         count = 0
@@ -18,7 +17,8 @@ class Problem4:
                 else:
                     dict[sum] = 1
             return count
-        except Exception:
-            return "Invalid Input"
+        except Exception as e:
+            return "Error:" + str(e)
+        
 prob = Problem4()
-print(prob.subarray(data, -93))
+print(prob.subarray(data, " "))
