@@ -1,9 +1,10 @@
 from flask import Flask,Response,request
 from item_actions import ItemAction
 import json
-import re
-import requests
 
+from email_validation import validate_email
+from password_validation import validate_password
+from input_validation import validate_input
 app = Flask(__name__)
 item_action = ItemAction() 
 
@@ -78,26 +79,20 @@ def add_new_user():
 def get_email():
     request_email = request.get_json()
     email = request_email.get('email')
-    if re.search('^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$', email):
-        return Response(json.dumps({'status':'Valid Email'}), mimetype='application/json', status=201)
-    return Response(json.dumps({'status':' Not A Valid Email'}), mimetype='application/json', status=400)
+    return validate_email(email)
 
 #PROBLEM -2
 @app.route('/password',methods=['POST'])
 def get_password():
     request_passord = request.get_json()
     password = request_passord.get('password')
-    if re.search('^(?=.*?[A-Z])(?=.*?[@_!#$%^&*()<>?/\|}{~:]).{8,}$', password):
-        return Response(json.dumps({'status':'Valid Password'}), mimetype='application/json', status=201)
-    return Response(json.dumps({'status':' Not A Valid Password'}), mimetype='application/json', status=400)
+    return validate_password(password)
 
 #PROBLEM -3
 @app.route('/input/<int:id>',methods=['GET'])
-def validate_input(id):
-    response = requests.get(f'https://jsonplaceholder.typicode.com/todos/{id}')
-    if ((id < 0) or (id > 200)):
-        return Response(json.dumps({'status':'Input must be integer between 1 to 200'}), mimetype='application/json', status=400)
-    return Response(response, mimetype='application/json', status=200)
+def validate_inputs(id):
+    return validate_input(id)
+
     
 if __name__ == '__main__':
     app.run(debug=True,port=5000,host='0.0.0.0')
