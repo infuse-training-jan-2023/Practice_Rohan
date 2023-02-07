@@ -60,4 +60,5 @@ class Testproblem2 < Test::Unit::TestCase
         }
         assert_equal({},Problem_6.new().remove_even(hash))
     end
+    
 end
