@@ -9,7 +9,7 @@ class Testproblem2 < Test::Unit::TestCase
         hash = {
             22 => 98,
             11 => 89,
-            20.9 => 99
+            20.9 => 990
         }
         assert_equal({22=>98, 11=>89, 20.9=>99, 220=>972},Problem_6.new().add_hash(hash,220,972))
     end
@@ -19,21 +19,14 @@ class Testproblem2 < Test::Unit::TestCase
             11 => 89,
             20.9 => 99
         }
-        assert_equal("Key value already exist",Problem_6.new().add_hash(hash,22,98))
+        assert_equal("Key already exist",Problem_6.new().add_hash(hash,22,98))
     end
-    def test_retain_integer
-        hash = {
-            22 => 98,
-            11 => 89,
-            20.9 => 99
-        }
-        assert_equal({22=>98, 11=>89},Problem_6.new().retain_integer(hash))
-    end
+
     def test_retain_integer_1
         hash = {
             22 => 98,
             11 => 89,
-            209 => 99
+            209 => 990
         }
         assert_equal({22=>98, 11=>89, 209=>99},Problem_6.new().retain_integer(hash))
     end

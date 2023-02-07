@@ -24,6 +24,5 @@ hash = {
             end 
         end
     end
-
   end
   prob6 = Problem_6.new()

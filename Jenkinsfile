@@ -1,10 +1,9 @@
 pipeline {
-    agent { node { label 'jenkins-slave-rohan' } }
 
     stages {
         stage('build') {
             steps {
-                bat 'echo hello World'
+                bat 'echo hello..........!'
             }
         }
         stage('test') {
