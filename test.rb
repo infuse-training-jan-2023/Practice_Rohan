@@ -3,6 +3,8 @@ require_relative "hash"
 
 class Testproblem2 < Test::Unit::TestCase
     def test_instance
+
+
         assert Problem_6.new().instance_of? Problem_6
     end
 
@@ -12,7 +14,7 @@ class Testproblem2 < Test::Unit::TestCase
             11 => 89,
             20.9 => 99
         }
-        assert_equal({22=>98, 11=>89, 20.9=>99, 220=>972},Problem_6.new().add_hash(hash,220,972))
+        assert_equal({22=>98 , 11=>89, 20.9=>99, 220=>972},Problem_6.new().add_hash(hash,220,972))
     end
 
 
@@ -36,6 +38,14 @@ class Testproblem2 < Test::Unit::TestCase
     end
 
 
+    def test_remove_even
+        hash = {
+            22 => 98,
+            11 => 89,
+            209 => 99
+        }
+        assert_equal({11=>89,209 => 99},Problem_6.new().remove_even(hash))
+    end
 
     def test_retain_integer_1
         hash = {
@@ -44,17 +54,6 @@ class Testproblem2 < Test::Unit::TestCase
             209 => 99
         }
         assert_equal({22=>98, 11=>89, 209=>99},Problem_6.new().retain_integer(hash))
-    end
-
-
-
-    def test_remove_even
-        hash = {
-            22 => 98,
-            11 => 89,
-            209 => 99
-        }
-        assert_equal({11=>89,209 => 99},Problem_6.new().remove_even(hash))
     end
 
 

@@ -4,15 +4,15 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat 'echo Hello Jenkins!'
+                bat 'echo Hello world'
             }
         }
-        stage('test') {
+        stage('Test') {
             steps {
                 bat 'ruby test.rb'
             }
         }
-        stage('merge') {
+        stage('Merge') {
             steps {
                 bat '''
                     git switch jenkins/ruby
