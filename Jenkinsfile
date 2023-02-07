@@ -1,13 +1,18 @@
 pipeline {
-    agent any
+    agent { node { label 'jenkins-slave-rohan' } }
 
     stages {
         stage('Build') {
             steps {
-                bat 'ruby test.rb'
+                bat 'echo Hello Jenkins!'
             }
         }
         stage('test') {
+            steps {
+                bat 'ruby test.rb'
+            }
+        }
+        stage('merge') {
             steps {
                 bat '''
                     git switch jenkins/ruby
