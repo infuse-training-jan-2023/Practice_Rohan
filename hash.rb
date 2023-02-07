@@ -18,6 +18,8 @@ hash = {
   
     def retain_integer(hash)
         hash.each_key do |key|
+
+            
             if(!key.is_a? Integer)
                 hash.delete(key)
 
@@ -31,5 +33,4 @@ hash = {
   puts prob6.add_hash(hash,220,972)
 
   puts prob6.retain_integer(hash)
-  
-  puts prob6.remove_even(hash)
+
