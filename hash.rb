@@ -26,4 +26,11 @@ hash = {
     end
 
   end
+  
   prob6 = Problem_6.new()
+  
+  puts prob6.add_hash(hash,220,972)
+
+  puts prob6.retain_integer(hash)
+  
+  puts prob6.remove_even(hash)
