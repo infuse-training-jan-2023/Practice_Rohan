@@ -7,7 +7,6 @@ class Problem11
         driver.get(url)
         get_tr = driver.find_elements(:tag_name => 'tr')[row]
         puts get_tr.find_elements(:tag_name => 'td')[column].text
-        # puts get_td
         sleep(2)
         driver.quit()
     end

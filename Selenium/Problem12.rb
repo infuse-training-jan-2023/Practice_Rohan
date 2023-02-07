@@ -1,5 +1,6 @@
 require 'selenium-webdriver'
 Selenium::WebDriver::Chrome.driver_path = "C:\\selenium\\Driver\\chromedriver.exe"
+
 class Problem12
     attr_accessor:driver
 
@@ -13,14 +14,6 @@ class Problem12
         puts "The URL of the page is: #{driver.current_url}"
         puts "The title of the page is: #{driver.title}"
     end
-
-    # def get_browser_title()
-    #     if driver.title != 'Electronics, Cars, Fashion, Collectibles & More | eBay'
-    #         return "title Not Found"
-    #     else    
-    #         return "The title of the page is: #{driver.title}"
-    #     end
-    # end
 
     def search_by_catergory()
         sel = driver.find_element(:id, 'gh-cat')
@@ -79,7 +72,6 @@ end
 
 prob = Problem12.new()
 prob.navigate_to_browser()
-# puts prob.get_browser_title()
 puts prob.search_by_catergory()
 prob.get_all_categories_details()
 prob.search_products()
