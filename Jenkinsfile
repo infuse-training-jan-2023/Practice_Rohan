@@ -15,7 +15,6 @@ pipeline {
         stage('merge') {
             steps {
                 bat '''
-                    git pull 
                     git switch jenkins/ruby
                     git pull 
                     git merge --strategy-option theirs --no-edit jenkins/ruby-1
