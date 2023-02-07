@@ -4,7 +4,7 @@ import requests
 
 scenarios('../features/update_item.feature')
 
-update_item_url = "http://127.0.0.1:5000/item/19"
+update_item_url = "http://127.0.0.1:5000/item/1"
 item = {"item":"post","status":"started"}
 
 @when('I update the item')

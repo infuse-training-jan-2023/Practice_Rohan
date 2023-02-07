@@ -5,7 +5,7 @@ def test_valid_passwprd_status():
     response = validate_password(password)
     assert response.status_code == 201
 
-def test_validate_password_status():
+def test_valid_password():
     password = "Rohan#1009"
     response = validate_password(password)
     assert b'{"status": "Valid Password"}' == response.data

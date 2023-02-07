@@ -4,7 +4,7 @@ import requests
 
 scenarios('../features/get_all_items.feature')
 
-get_all_items_url = "http://127.0.0.1:5000/item"
+get_all_items_url = "http://127.0.0.1:5000/items"
 
 @when('I search for All items')
 def get_all_items():

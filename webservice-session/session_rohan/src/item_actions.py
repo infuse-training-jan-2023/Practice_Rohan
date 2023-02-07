@@ -1,6 +1,8 @@
 from item_repository import ItemRepository
+import csv
+
 class ItemAction:
-    def __init__(self) -> None:
+    def __init__(self)->None:
         self.item_repo = ItemRepository()
 
     def get_all_items(self):
@@ -10,7 +12,7 @@ class ItemAction:
             for item in items:
                 res.append({
                     "id": item[0],
-                    "name": item[1],
+                    "item": item[1],
                     "status": item[2],
                     "reminder": item[3]
                 })
@@ -19,9 +21,9 @@ class ItemAction:
             print(e)
             return {}
     
-    def add_item(self, item, reminder):
+    def add_item(self,item,reminder):
         try:
-            item = self.item_repo.add_item(item, reminder)
+            item = self.item_repo.add_item(item,reminder)
             return item
         except Exception as e:
             print(e)
@@ -34,7 +36,7 @@ class ItemAction:
             for item in items:
                 res.append({
                     "id": item[0],
-                    "name": item[1],
+                    "Item": item[1],
                     "status": item[2],
                     "reminder": item[3]
                 })
@@ -59,18 +61,15 @@ class ItemAction:
             print(e)
             return {}
     
-    def add_new_user(self,name,age,gender,address):
-        try:
-            user = self.item_repo.add_new_user(name,age,gender,address)
-            return user
-        except Exception as e:
-            print(e)
-            return {}
-    
     def add_item_to_csv(self):
         try:
-            item = self.item_repo.add_item_to_csv()
-            return item
+            columns = ["id","item","status","reminder"]
+            rows = self.item_repo.get_all_items()
+            with open('../items.csv', 'w') as csvfile:
+                csvwriter = csv.writer(csvfile)
+                csvwriter.writerow(columns)
+                csvwriter.writerows(rows)
+            return {"status":"Saved to CSV file"}
         except Exception as e:
             print(e)
             return {}
