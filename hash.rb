@@ -24,15 +24,7 @@ hash = {
             end 
         end
     end
-  
-    def remove_even(hash)
-        hash.each_key do |key|
-            if(key.even?)
-                hash.delete(key)
-            end 
-        end
-        return hash
-    end
+
   end
   
   prob6 = Problem_6.new()
