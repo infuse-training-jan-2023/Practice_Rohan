@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+<script defer src="script.js"></script>
+<title>Student-form</title>
+</head>
+<body>
+
+<h3>Contact Form</h3>
+
+<div class="container">
+  <form onsubmit="submitForm()" method="dialog">
+    <label for="fname">First Name</label>
+    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+    <label for="lname">Last Name</label>
+    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+    <label for="country">Country</label>
+    <select id="country" name="country">
+      <option value="australia">Australia</option>
+      <option value="canada">Canada</option>
+      <option value="usa">USA</option>
+    </select>
+
+    <label for="subject">Subject</label>
+    <textarea id="subject" name="subject" class="message" placeholder="Write something.." style="height:200px"></textarea>
+
+    <button type="submit" value="Submit" id="submit">Submit</button>
+  </form>
+  
+  
+</div>
+<div>
+  <table>
+    <tr>
+      <th>fname</th>
+      <th>lname</th>
+      <th>Country</th>
+      <th>Subject</th>
+    </tr>
+    <tr>
+      <td id="f-name"></td>
+      <td id="l-name"></td>
+      <td id="dropwon-option"></td>
+      <td id= "msg"></td>
+    </tr>
+  </table>
+  
+</div>
+</body>
+</html>
