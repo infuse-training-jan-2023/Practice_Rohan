@@ -1,4 +1,4 @@
 require 'json'
 
-user = (ENV["INFO"])
-puts JSON.parse(user)
+user = JSON.parse(ENV["INFO"])
+puts user

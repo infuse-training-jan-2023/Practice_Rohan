@@ -1,9 +1,41 @@
-require 'test/unit'
+hash = {
+  22 => 98,
+  11 => 89,
+  20.9 => 99
+}
 
-class TestExample < Test::Unit::TestCase
+class Problem_6
 
-  def test_example
-    assert_equal(2, 1 + 1)
+  def add_hash(hashData,keyV,valueV)
+      if hashData.has_key?(keyV)
+          return "Key value already exist"
+      else
+          hashData[keyV] = valueV
+      end
+      return hashData
   end
-  # hello
+
+  def retain_integer(hash)
+      hash.each_key do |key|
+          if(!key.is_a? Integer)
+              hash.delete(key)
+          end 
+      end
+  end
+
+  def remove_even(hash)
+      hash.each_key do |key|
+          if(key.even?)
+              hash.delete(key)
+          end 
+      end
+      return hash
+  end
 end
+
+prob6 = Problem_6.new()
+
+# puts prob6.add_hash(hash,220,972)
+puts prob6.retain_integer(hash)
+puts prob6.remove_even(hash)
+

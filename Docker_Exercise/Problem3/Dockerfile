@@ -1,4 +1,5 @@
 FROM ruby
 WORKDIR /src/
-COPY ex3.rb .
-CMD ruby ex3.rb
+RUN gem install test-unit
+COPY . .
+CMD ruby test_ex3.rb
