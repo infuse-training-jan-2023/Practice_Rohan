@@ -1,16 +1,20 @@
 require 'selenium-webdriver'
 Selenium::WebDriver::Chrome.driver_path = "C:\\selenium\\Driver\\chromedriver.exe"
+
 class Problem11
-    def get_table_cell()
+    def get_table_cell(url,row,column)
         driver = Selenium::WebDriver.for :chrome
-        url = "https://the-internet.herokuapp.com/tables"
         driver.get(url)
-        get_tr = driver.find_elements(:tag_name => 'tr')[3]
-        get_td = get_tr.find_elements(:tag_name => 'td')[3]
-        puts get_td.text
+        get_tr = driver.find_elements(:tag_name => 'tr')[row]
+        puts get_tr.find_elements(:tag_name => 'td')[column].text
+        # puts get_td
         sleep(2)
         driver.quit()
     end
 end
+
+url = "https://the-internet.herokuapp.com/tables"
+row = 3
+column = 3
 prob = Problem11.new()
-prob.get_table_cell()
+prob.get_table_cell(url,row,column)

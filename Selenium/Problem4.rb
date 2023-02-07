@@ -18,6 +18,6 @@ class Problem4
     end
 end
 
-prob = Problem4.new()
 url ="https://demo.automationtesting.in/Register.html"
+prob = Problem4.new()
 prob.click_button(url)
