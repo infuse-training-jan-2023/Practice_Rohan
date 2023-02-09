@@ -1,0 +1,269 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 20% auto;
+}
+
+aside {
+  border-right: 1px solid rgb(205, 205, 205);
+  width: 250px;
+  box-shadow: 1px 5px 18px grey;
+}
+
+.um-logo {
+  padding: 16px 24px;
+  border-bottom: 1px solid rgb(205, 205, 205);
+  width: 100%;
+  border-bottom: none;
+}
+
+.um-user-email {
+  font-size: small;
+  margin-left: 20px;
+  color:gray;
+  background: none;
+}
+
+.um-user {
+  display: inline-flex;
+}
+
+.um-user img {
+  width: 40px;
+  margin-left: 20px;
+}
+
+.test-designer {
+  width: 50%;
+  height: 200px;
+}
+
+.um-user-name {
+  margin-left: 20px;
+  font-size: large;
+  color:rgb(74, 168, 192);
+  background: none;
+  font-weight: bold;
+}
+
+.user-info {
+  margin-top: 20px;
+}
+
+.navitems {
+  margin-top: 40px;
+}
+
+li>span {
+  color: aqua;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+li>i {
+  margin-right: 20px;
+  font-size: 28px;
+  color: aqua;
+}
+
+.um-navitems__main {
+  list-style: none;
+  border-bottom: 2px gray solid;
+}
+
+.um-navitems__secondary {
+  list-style: none;
+  border-bottom: 1px solid grey;
+}
+
+li {
+  transform: translateX(-40px);
+  padding: 12px;
+  width: 250px;
+  padding-left: 20px;
+}
+
+ul>li:hover {
+  background-color: rgb(136, 180, 238);
+  cursor: pointer;
+  border-left: 3px blue solid;
+}
+
+.test-data:nth-child(2) {
+  grid-column: 2/3;
+  display: grid;
+  grid-template-rows: 327px 327px;
+  border-left: rgb(74, 168, 192) 2px solid;
+}
+
+.test-flowchart {
+  background-color: white;
+  border-right: rgb(74, 168, 192) 2px solid;
+}
+
+main {
+  transform: translate(-130px);
+  margin: 10px;
+  box-shadow: 1px 5px 18px grey;
+}
+
+.test-main {
+  display: grid;
+  grid-template-columns: 1150px 470px;
+  grid-template-rows: 674px;
+  gap: 10px;
+
+}
+
+.options {
+  flex-direction: row;
+  background-color: aliceblue;
+  padding: 2px;
+  padding-top: 5px;
+}
+
+div>i {
+  flex: 20px;
+  font-weight: bold;
+  font-size: 27px;
+  color: grey;
+  padding-left: 5px;
+  padding-right: 5px;
+  cursor: pointer;
+}
+
+.options >i:nth-child(2) {
+  border-left: 1px solid grey;
+}
+
+.options>i:nth-child(4) {
+  border-left: 1px solid grey;
+}
+
+.options>i:nth-child(7) {
+  border-left: 1px solid grey;
+}
+
+.options>i:nth-child(10) {
+  border-left: 1px solid grey;
+}
+
+.options>i:nth-child(11) {
+  border-left: 1px solid grey;
+}
+
+div>div>span {
+  background-color: rgb(74, 168, 192);
+  color: white;
+}
+
+.test-flowchart>span {
+  display: flex;
+  width: 1150px;
+  padding: 5px;
+  font-size: 18px;
+}
+.test-variables>span,.test-parameters>span{
+  color: wheat;
+  background-color: rgb(73, 128, 231);
+  display: block;
+  font-size: large;
+  padding: 5px;
+}
+
+.test-variables i,.test-parameters i{
+  display: flex;
+  font-size: 40px;
+  font-weight:bold;
+  justify-content: end;
+  color: rgb(74, 168, 192);
+}
+.table-header{
+  padding-bottom: 2px;
+  border-bottom: 1px grey solid;
+}
+.table-header span{
+  background: none;
+  margin-left: 70px;
+  font-size: 18px;
+  color: rgb(73, 128, 231);
+  font-weight: bold;
+}
+.test-data > span:nth-child(1){
+  background-color: black;
+  color: white;
+  padding: 10px;
+}
+.test-data > span:nth-child(2){
+  background-color: rgb(73, 128, 231);
+  padding: 10px;
+  padding-right: 1420px;
+}
+
+.test-data .bi-pencil-square{
+  padding: 5px;
+  transform: translateX(-1400px);
+  position: absolute;
+  color: white;
+}
+.bi-x{
+  background-color: rgb(73, 128, 231);
+  padding-bottom: 7px;
+  padding-left: 13px;
+  padding-right: 13px;
+  color: white;
+  font-weight: bold;
+}
+.test-properties >span{
+  margin-top: 6px;
+  display:flex;
+  padding-left: 4px;
+  width: 1630px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+form{
+  display: flex;
+  padding-top: 10px;
+}
+.description >textarea{
+  width: 700px;
+  margin: 3px;
+  transform: translate(550px);
+  background-color: aliceblue;
+  border: none;
+  border-radius: 4px;
+}
+.description >label{
+  margin-left: 450px;
+  position:absolute;
+  font-size: large;
+}
+form label{
+  padding-left: 4px;
+  color: rgb(29, 32, 201);
+  font-size: large;
+  font-weight: bold;
+}
+.details label{
+  margin-right: 20px;
+}
+#status,#assigned{
+  border: 1px solid rgb(218, 212, 212);
+  color: gray;
+  font-size: medium;
+  padding: 3px;
+}
+#tags{
+  color: rgb(29, 32, 201);
+  border: none;
+}
+.bi-plus-circle{
+  color:rgb(29, 32, 201)
+}
