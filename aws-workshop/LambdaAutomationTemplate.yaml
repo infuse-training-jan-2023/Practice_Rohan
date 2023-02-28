@@ -23,13 +23,13 @@ Resources:
       AccessControl: PublicRead
       BucketName: !Ref LogBucket
   
-  ApiGatewayRestApi:
+  LogAPIGeteway:
     Type: AWS::ApiGateway::RestApi
     Properties:
       EndpointConfiguration:
           Types:
             - REGIONAL
-      Name: test-api-gateway
+      Name: LogAPIGateway
   
   ApiGatewayMethod:
     Type: AWS::ApiGateway::Method
@@ -41,9 +41,9 @@ Resources:
         IntegrationHttpMethod: POST
         Uri: !Sub 
           - arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${lambdaArn}/invocations
-          - lambdaArn: !GetAtt LambdaFunction.Arn
-      ResourceId: !GetAtt ApiGatewayRestApi.RootResourceId
-      RestApiId: !Ref ApiGatewayRestApi
+          - lambdaArn: !GetAtt LogTimestampLambdaFunction.Arn
+      ResourceId: !GetAtt LogAPIGeteway.RootResourceId
+      RestApiId: !Ref LogAPIGeteway
 
   ApiGatewayDeployment:
     Type: AWS::ApiGateway::Deployment
@@ -51,27 +51,10 @@ Resources:
       - ApiGatewayMethod
     Properties:
       Description: Lambda API Deployment
-      RestApiId: !Ref ApiGatewayRestApi
+      RestApiId: !Ref LogAPIGeteway
       StageName: !Ref APIGetewayStageName
   
-  LambdaFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      Runtime: python3.9
-      Timeout: 50
-      Handler: lambda_function.lambda_handler
-      CodeUri: lambda_function.py
-      Role: !GetAtt LambdaFunctionRole.Arn
-  
-  ApiGatewayPermission:
-    Type: AWS::Lambda::Permission
-    Properties:
-      FunctionName: !GetAtt LambdaFunction.Arn
-      Action: lambda:InvokeFunction
-      Principal: apigateway.amazonaws.com
-      SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGatewayRestApi}/${APIGetewayStageName}/${APIHTTPMethod}/
-  
-  LambdaFunctionRole:
+  LogTimestampLambdaFunctionRole:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
@@ -97,9 +80,26 @@ Resources:
               - s3:GetObject
               - s3:PutObject
             Resource: '*'
+  
+  LogTimestampLambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Runtime: python3.9
+      Timeout: 50
+      Handler: lambda_function.lambda_handler
+      CodeUri: lambda_function.py
+      Role: !GetAtt LogTimestampLambdaFunctionRole.Arn
+  
+  ApiGatewayPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !GetAtt LogTimestampLambdaFunction.Arn
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${LogAPIGeteway}/${APIGetewayStageName}/${APIHTTPMethod}/
 
 Outputs:
   LambdaFunctionName:
-    Value: !Ref LambdaFunction
+    Value: !Ref LogTimestampLambdaFunction
   ApiGatewayUrl:
-    Value: !Sub https://${ApiGatewayRestApi}.execute-api.${AWS::Region}.amazonaws.com/${APIGetewayStageName}
+    Value: !Sub https://${LogAPIGeteway}.execute-api.${AWS::Region}.amazonaws.com/${APIGetewayStageName}
